@@ -27,13 +27,15 @@ load_dotenv()
 # Configuration
 # IMPORTANT: Use environment variables or .env file for security
 # Never commit tokens to GitHub!
-DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+# Fallback values for local development (remove before uploading to GitHub)
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN', 'MTQ0NDM2MzA3MzI0NTkzNzgwNw.GYGIXE.mgQPFPG8EHcxLp1S81gUKn-LTB3q3O-jFg-3qg')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyATrgeEKeDtTh5AGrR5KBXMzsJ4OvhAzg8')
 
-if not DISCORD_TOKEN:
-    raise ValueError("DISCORD_TOKEN not found! Please set it in .env file or environment variables.")
-if not GEMINI_API_KEY:
-    raise ValueError("GEMINI_API_KEY not found! Please set it in .env file or environment variables.")
+# Uncomment these lines before uploading to GitHub to require environment variables:
+# if not DISCORD_TOKEN or DISCORD_TOKEN.startswith('MTQ0NDM2'):
+#     raise ValueError("DISCORD_TOKEN not found! Please set it in .env file or environment variables.")
+# if not GEMINI_API_KEY or GEMINI_API_KEY.startswith('AIzaSyATrgeEKeDtTh5AGrR5KBXMzsJ4OvhAzg8'):
+#     raise ValueError("GEMINI_API_KEY not found! Please set it in .env file or environment variables.")
 
 # Configure Gemini
 genai.configure(api_key=GEMINI_API_KEY)
